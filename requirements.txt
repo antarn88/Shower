@@ -1,0 +1,4 @@
+pycryptodome==3.9.8
+pyperclip==1.8.0
+PySide2==5.15.0
+shiboken2==5.15.0

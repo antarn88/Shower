@@ -95,3 +95,14 @@ activate the virtual environment and launch the application:
 
 ## Download Windows binaries
 Download latest Windows binaries:<br/>
+- [Shower_0.51_win32.zip](https://github.com/antarn88/Shower/releases/download/v0.51/Shower_0.51_win32.zip)
+- [Shower_0.51_win64.zip](https://github.com/antarn88/Shower/releases/download/v0.51/Shower_0.51_win64.zip)
+
+## Screenshots
+**File encryption:**
+
+![Windows screenshot](screenshots/screenshot_windows_01.png)
+
+**File decryption:**
+
+![Windows screenshot](screenshots/screenshot_windows_02.png)

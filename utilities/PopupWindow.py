@@ -4,13 +4,11 @@ from PySide2.QtWidgets import QMessageBox, QStyle
 
 
 class PopupWindow(QMessageBox):
-    def __init__(self, text, focus):
+    def __init__(self, parent, text, focus):
         super(PopupWindow, self).__init__()
 
-        msgbox = self
-
         # Set window center of screen
-        msgbox.setGeometry(
+        self.setGeometry(
             QStyle.alignedRect(
                 Qt.LeftToRight,
                 Qt.AlignCenter,
@@ -21,5 +19,5 @@ class PopupWindow(QMessageBox):
 
         title = "Shower"
 
-        msgbox.warning(self, title, text)
+        self.warning(parent, title, text)
         focus.setFocus()

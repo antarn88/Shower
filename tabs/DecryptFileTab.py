@@ -81,21 +81,21 @@ class DecryptFileTab(QWidget):
                                     if validator.has_enough_space():
                                         return True
                                     else:
-                                        PopupWindow("Not enough free space on the destination drive! Check!", self.output_field)
+                                        PopupWindow(self, "Not enough free space on the destination drive! Check!", self.output_field)
                                 else:
-                                    PopupWindow("The secret key is invalid! Check!", self.key_field)
+                                    PopupWindow(self, "The secret key is invalid! Check!", self.key_field)
                             else:
-                                PopupWindow("Input and output file cannot be the same! Check!", self.output_field)
+                                PopupWindow(self, "Input and output file cannot be the same! Check!", self.output_field)
                         else:
-                            PopupWindow("Output file is unwritable! Check!", self.output_field)
+                            PopupWindow(self, "Output file is unwritable! Check!", self.output_field)
                     else:
-                        PopupWindow("Input file does not exist! Check!", self.input_field)
+                        PopupWindow(self, "Input file does not exist! Check!", self.input_field)
                 else:
-                    PopupWindow("The secret key field is empty! Check!", self.key_field)
+                    PopupWindow(self, "The secret key field is empty! Check!", self.key_field)
             else:
-                PopupWindow("Output filename is empty! Check!", self.output_field)
+                PopupWindow(self, "Output filename is empty! Check!", self.output_field)
         else:
-            PopupWindow("Input filename is empty! Check!", self.input_field)
+            PopupWindow(self, "Input filename is empty! Check!", self.input_field)
 
     def start_decryption_action(self):
         self.input_filename = self.input_field.text()

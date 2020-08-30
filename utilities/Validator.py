@@ -1,7 +1,7 @@
 from os import path, access, W_OK, getcwd
 from shutil import disk_usage
 
-from utilities.CommonResources import get_file_size
+from utilities.CommonResources import get_file_size, get_platform
 
 
 class Validator:
@@ -32,8 +32,12 @@ class Validator:
         dirname = path.dirname(self.output_filename)
         if dirname == "":
             dirname = getcwd()
-        drive = path.splitdrive(dirname)[0]
-        return disk_usage(drive)[2]
+        if get_platform() == "Windows":
+            drive = path.splitdrive(dirname)[0]
+            return disk_usage(drive)[2]
+        else:
+            from os import statvfs
+            return statvfs(dirname).f_frsize * statvfs(dirname).f_bavail
 
     def has_enough_space(self):
         if self.get_free_space_on_destination_disk() > get_file_size(self.input_filename):

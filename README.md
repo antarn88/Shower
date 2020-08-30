@@ -11,6 +11,7 @@ This application has been written in Python with PySide2 framework.
 
 ## Requirements
 - [Python 3.6 or newer](https://www.python.org/downloads/)
+- [xclip package (only on Linux)](https://launchpad.net/ubuntu/+source/xclip)
 - [Git (for project cloning)](https://git-scm.com/)
 
 ## Getting started
@@ -47,7 +48,7 @@ This application has been written in Python with PySide2 framework.
     
         ```bash
         apt update
-        sudo apt install python3 python3-venv git -y
+        sudo apt install python3 python3-venv git xclip -y
         ```
       
     - Clone the project:

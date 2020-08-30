@@ -1,4 +1,5 @@
 from os import path
+from platform import system
 from random import choice
 from string import ascii_letters, digits
 
@@ -8,13 +9,19 @@ from PySide2.QtWidgets import QFileDialog
 def input_file_browser_action(parent, input_field):
     filename = QFileDialog.getOpenFileName(parent, "Select the input file")
     if filename[0]:
-        input_field.setText(filename[0].replace("/", "\\"))
+        if get_platform() == "Windows":
+            input_field.setText(filename[0].replace("/", "\\"))
+        else:
+            input_field.setText(filename[0])
 
 
 def output_file_browser_action(parent, output_field):
     filename = QFileDialog.getSaveFileName(parent, "Save the output file")
     if filename[0]:
-        output_field.setText(filename[0].replace("/", "\\"))
+        if get_platform() == "Windows":
+            output_field.setText(filename[0].replace("/", "\\"))
+        else:
+            output_field.setText(filename[0])
 
 
 def get_file_size(filename):
@@ -44,3 +51,7 @@ def get_file_size_formatted(filename):
 def get_random_key():
     letters_and_digits = ascii_letters + digits
     return "".join((choice(letters_and_digits) for i in range(32)))
+
+
+def get_platform():
+    return system()

@@ -2,7 +2,7 @@ from PySide2.QtGui import QFont, Qt
 from PySide2.QtWidgets import QWidget, QLabel, QGridLayout, QLineEdit, QPushButton, QProgressBar
 from pyperclip import copy
 
-from utilities.CommonResources import input_file_browser_action, output_file_browser_action, get_file_size, get_file_size_formatted
+from utilities.CommonResources import input_file_browser_action, output_file_browser_action, get_file_size, get_file_size_formatted, get_platform
 from utilities.PopupWindow import PopupWindow
 from utilities.Validator import Validator, is_empty
 
@@ -169,13 +169,23 @@ class EncryptFileTab(QWidget):
 
         # Generate GUI elements
         self.complete_label = QLabel("The encryption of the file has been completed.")
-        self.complete_label.setFont(QFont("SansSerif", 15))
+
+        if get_platform() == "Windows":
+            self.complete_label.setFont(QFont("SansSerif", 15))
+        else:
+            self.complete_label.setFont(QFont("SansSerif", 13))
+
         self.complete_label.setAlignment(Qt.AlignHCenter)
         self.complete_label.setStyleSheet("QLabel { font-weight: bold; color: green; }")
         self.main_layout.addWidget(self.complete_label, 0, 0, 1, 3)
 
         self.secret_key_label = QLabel("Your secret key for restoring the file:")
-        self.secret_key_label.setFont(QFont("SansSerif", 12))
+
+        if get_platform() == "Windows":
+            self.secret_key_label.setFont(QFont("SansSerif", 12))
+        else:
+            self.secret_key_label.setFont(QFont("SansSerif", 11))
+
         self.secret_key_label.setAlignment(Qt.AlignHCenter)
         self.secret_key_label.setStyleSheet("QLabel { font-weight: bold; }")
         self.main_layout.addWidget(self.secret_key_label, 1, 0, 1, 3)
@@ -186,7 +196,12 @@ class EncryptFileTab(QWidget):
         self.secret_key_field.setAlignment(Qt.AlignHCenter)
 
         font = self.secret_key_field.font()
-        font.setPointSize(15)
+
+        if get_platform() == "Windows":
+            font.setPointSize(15)
+        else:
+            font.setPointSize(13)
+
         self.secret_key_field.setFont(font)
         self.main_layout.addWidget(self.secret_key_field, 2, 0, 1, 2)
 
@@ -197,7 +212,12 @@ class EncryptFileTab(QWidget):
         self.main_layout.addWidget(self.copy_btn, 2, 2)
 
         self.warning_label = QLabel("Keep this secret key in a safe place, because without it you will not be able to restore the file!")
-        self.warning_label.setFont(QFont("SansSerif", 12))
+
+        if get_platform() == "Windows":
+            self.warning_label.setFont(QFont("SansSerif", 12))
+        else:
+            self.warning_label.setFont(QFont("SansSerif", 11))
+
         self.warning_label.setAlignment(Qt.AlignHCenter)
         self.warning_label.setStyleSheet("QLabel { font-weight: bold; color: red; }")
         self.warning_label.setWordWrap(True)

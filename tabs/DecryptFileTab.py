@@ -1,7 +1,7 @@
 from PySide2.QtGui import QFont, Qt
 from PySide2.QtWidgets import QWidget, QLabel, QGridLayout, QLineEdit, QPushButton, QProgressBar
 
-from utilities.CommonResources import input_file_browser_action, output_file_browser_action, get_file_size, get_file_size_formatted
+from utilities.CommonResources import input_file_browser_action, output_file_browser_action, get_file_size, get_file_size_formatted, get_platform
 from utilities.PopupWindow import PopupWindow
 from utilities.Validator import Validator, is_empty
 
@@ -56,6 +56,7 @@ class DecryptFileTab(QWidget):
 
         self.key_field = QLineEdit()
         self.key_field.returnPressed.connect(self.start_decryption_action)
+        self.key_field.setMaxLength(32)
         self.main_layout.addWidget(self.key_field, 2, 1)
 
         self.start_decryption_btn = QPushButton("Start decryption")
@@ -181,7 +182,12 @@ class DecryptFileTab(QWidget):
 
         # Generate GUI elements
         self.complete_label = QLabel("The decryption of the file has been completed.")
-        self.complete_label.setFont(QFont("SansSerif", 15))
+
+        if get_platform() == "Windows":
+            self.complete_label.setFont(QFont("SansSerif", 15))
+        else:
+            self.complete_label.setFont(QFont("SansSerif", 13))
+
         self.complete_label.setAlignment(Qt.AlignCenter)
         self.complete_label.setStyleSheet("QLabel { font-weight: bold; color: green; }")
         self.main_layout.addWidget(self.complete_label, 0, 0, 1, 3)

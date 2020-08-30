@@ -33,7 +33,7 @@ class Shower(QMainWindow):
         )
 
         # The title of the program
-        self.setWindowTitle("Shower v0.51")
+        self.setWindowTitle("Shower v0.52")
 
         # Set app icon
         self.setWindowIcon(QIcon(QPixmap(app_icon())))
